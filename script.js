@@ -32,7 +32,10 @@ function appendNumber(num) {
 }
 
 function appendOperator(op) {
-  if (evaluated) evaluated = false;
+  if (evaluated) {
+    expression = "";
+    evaluated = false;
+  }
 
   if (lastOperator) {
     // Replace the trailing operator
@@ -132,7 +135,10 @@ document.addEventListener("keydown", (e) => {
   const key = e.key;
   if (/^[0-9.]$/.test(key)) handleAction(key);
   else if (["+", "-", "*", "/", "%"].includes(key)) handleAction(key);
-  else if (key === "Enter" || key === "=") handleAction("=");
+  else if (key === "Enter" || key === "=") {
+    e.preventDefault();
+    handleAction("=");
+  }
   else if (key === "Backspace") handleAction("backspace");
   else if (key === "Escape" || key === "Delete") handleAction("clear");
 });

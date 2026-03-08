@@ -1,0 +1,145 @@
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Calculator Shell ── */
+.calculator {
+  width: 340px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Display ── */
+.display {
+  padding: 28px 24px 18px;
+  text-align: right;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.expression {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  min-height: 1.2em;
+  word-break: break-all;
+}
+
+.result {
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 1px;
+  transition: transform 0.15s ease;
+  word-break: break-all;
+}
+
+.result.pop {
+  transform: scale(1.06);
+}
+
+/* ── Button Grid ── */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  padding: 1px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── Buttons ── */
+.btn {
+  padding: 22px;
+  font-size: 1.3rem;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.07);
+  color: #e0e0e0;
+  transition: background 0.2s, transform 0.1s;
+  user-select: none;
+  outline: none;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.btn:active {
+  transform: scale(0.94);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Number keys */
+.btn.number {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Zero spans two columns */
+.btn.zero {
+  grid-column: span 2;
+}
+
+/* Operator keys */
+.btn.operator {
+  color: #a78bfa;
+  font-weight: 600;
+}
+
+/* Clear key */
+.btn.clear {
+  color: #f87171;
+  font-weight: 700;
+}
+
+/* Equals key */
+.btn.equals {
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.btn.equals:hover {
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+}
+
+/* ── Responsive ── */
+@media (max-width: 400px) {
+  .calculator {
+    width: 96vw;
+    border-radius: 18px;
+  }
+
+  .btn {
+    padding: 18px;
+    font-size: 1.1rem;
+  }
+
+  .result {
+    font-size: 2.2rem;
+  }
+}

@@ -1,0 +1,144 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+
+% ── Page Style ──
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CSE341 -- Internet Programming}
+\lhead{Lab 3}
+\cfoot{\thepage}
+
+% ── Code Listing Style ──
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{gray!10},
+  frame=single,
+  rulecolor=\color{gray!40},
+  breaklines=true,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  tabsize=2,
+  showstringspaces=false,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red!60!black}
+}
+
+\begin{document}
+
+% ── Title Page ──
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\Huge\bfseries My Interactive Calculator Webpage\par}
+  \vspace{1cm}
+  {\Large CSE341 -- Internet Programming\par}
+  {\Large Lab 3\par}
+  \vspace{2cm}
+  {\large
+    \textbf{Name:} Seif Elden \\[6pt]
+    \textbf{Date:} \today
+  }
+  \vfill
+  {\large Ain Shams University \\ Faculty of Engineering}
+\end{titlepage}
+
+% ── Table of Contents ──
+\tableofcontents
+\newpage
+
+% ════════════════════════════════════════════
+\section{Objective}
+Build an interactive calculator webpage using HTML, CSS, and JavaScript that performs basic mathematical operations (addition, subtraction, multiplication, division, and modulus).
+
+% ════════════════════════════════════════════
+\section{Project Structure}
+The project consists of three files, each handling a separate concern:
+
+\begin{itemize}
+  \item \textbf{index.html} -- Document structure and calculator layout.
+  \item \textbf{style.css} -- Visual styling with a glassmorphism design.
+  \item \textbf{script.js} -- Calculator logic, DOM manipulation, and event handling.
+\end{itemize}
+
+% ════════════════════════════════════════════
+\section{Implementation Details}
+
+\subsection{HTML (index.html)}
+The HTML file defines a semantic structure for the calculator:
+
+\begin{itemize}
+  \item A \texttt{.display} section with two elements: one for the running expression and one for the current result.
+  \item A \texttt{.buttons} grid containing number buttons (0--9), operator buttons (+, $-$, $\times$, $\div$, \%), a decimal point, clear (AC), backspace ($\leftarrow$), and equals (=).
+  \item Each button uses a \texttt{data-action} attribute to identify its function, keeping the HTML clean and the JS decoupled from the display text.
+\end{itemize}
+
+\subsection{CSS (style.css)}
+Key creative design choices:
+
+\begin{itemize}
+  \item \textbf{Glassmorphism:} The calculator uses \texttt{backdrop-filter: blur()} and semi-transparent backgrounds to achieve a frosted-glass look.
+  \item \textbf{Gradient Background:} A deep purple-to-dark gradient gives the page a modern aesthetic.
+  \item \textbf{Grid Layout:} CSS Grid arranges the buttons in a clean 4-column layout.
+  \item \textbf{Micro-interactions:} Buttons scale down on click and the result text pops on update, providing tactile feedback.
+  \item \textbf{Responsive:} A media query adapts sizing for screens under 400px.
+\end{itemize}
+
+\subsection{JavaScript (script.js)}
+The JS follows the DOM $\rightarrow$ Event $\rightarrow$ Logic pattern:
+
+\begin{enumerate}
+  \item \textbf{DOM Selection:} \texttt{getElementById} and \texttt{querySelectorAll} select the display and button nodes.
+  \item \textbf{Event Listeners:} Click events on each button and a \texttt{keydown} listener for full keyboard support.
+  \item \textbf{Logic Functions:}
+    \begin{itemize}
+      \item \texttt{appendNumber()} -- builds the current operand string.
+      \item \texttt{appendOperator()} -- appends the operand and operator to the expression.
+      \item \texttt{handleBackspace()} -- removes the last character or operator.
+      \item \texttt{calculate()} -- evaluates the full expression safely and displays the result.
+      \item \texttt{resetCalc()} -- clears all state.
+      \item \texttt{render()} -- updates the DOM display elements.
+    \end{itemize}
+\end{enumerate}
+
+% ════════════════════════════════════════════
+\section{Screenshots}
+
+\subsection{Calculator -- Initial State}
+% ┌──────────────────────────────────────────┐
+% │  Replace "screenshot1.png" with your     │
+% │  actual screenshot file name.            │
+% └──────────────────────────────────────────┘
+\begin{figure}[h!]
+  \centering
+  \fbox{\parbox{0.7\textwidth}{\vspace{5cm}\centering\textit{Screenshot 1: Place your screenshot here\\(replace with \textbackslash includegraphics)}\vspace{5cm}}}
+  % Uncomment the line below and comment the \fbox block above after adding your screenshot:
+  % \includegraphics[width=0.7\textwidth]{screenshot1.png}
+  \caption{Calculator in its initial state showing the default display.}
+\end{figure}
+
+\subsection{Calculator -- After Performing a Calculation}
+% ┌──────────────────────────────────────────┐
+% │  Replace "screenshot2.png" with your     │
+% │  actual screenshot file name.            │
+% └──────────────────────────────────────────┘
+\begin{figure}[h!]
+  \centering
+  \fbox{\parbox{0.7\textwidth}{\vspace{5cm}\centering\textit{Screenshot 2: Place your screenshot here\\(replace with \textbackslash includegraphics)}\vspace{5cm}}}
+  % Uncomment the line below and comment the \fbox block above after adding your screenshot:
+  % \includegraphics[width=0.7\textwidth]{screenshot2.png}
+  \caption{Calculator displaying the result of a mathematical operation.}
+\end{figure}
+
+% ════════════════════════════════════════════
+\section{Conclusion}
+This lab demonstrated building a fully functional calculator webpage using the separation-of-concerns principle: HTML for structure, CSS for presentation, and JavaScript for behavior. The JS code was organized around the DOM--Event--Logic pattern, making it maintainable and efficient. The glassmorphism CSS design gives the calculator a polished, modern look.
+
+\end{document}
